@@ -10,7 +10,8 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Serilog.AspNetCore" Version="8.*" />
-    <PackageReference Include="Serilog.Sinks.Console" Version="6.*" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="$(SerilogSinksConsoleVersion)" />
+    <PackageReference Include="Serilog.Sinks.OpenTelemetry" Version="$(SerilogSinksOpenTelemetryVersion)" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="7.*" />
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="$(OpenTelemetryVersion)" />
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="$(OpenTelemetryVersion)" />

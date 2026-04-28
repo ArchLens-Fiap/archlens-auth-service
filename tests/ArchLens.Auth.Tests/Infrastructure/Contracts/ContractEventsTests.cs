@@ -51,7 +51,7 @@ public class ContractEventsTests
         var analysisId = Guid.NewGuid();
         var diagramId = Guid.NewGuid();
         var timestamp = DateTime.UtcNow;
-        var providers = new List<string> { "openai", "gemini" };
+        var providers = new List<string> { "openai", "anthropic" };
 
         var evt = new AnalysisCompletedEvent
         {
@@ -178,7 +178,7 @@ public class ContractEventsTests
     {
         var analysisId = Guid.NewGuid();
         var diagramId = Guid.NewGuid();
-        var providers = new List<string> { "gemini" };
+        var providers = new List<string> { "anthropic" };
         var timestamp = DateTime.UtcNow;
 
         var cmd = new GenerateReportCommand

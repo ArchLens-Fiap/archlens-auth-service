@@ -1,6 +1,7 @@
 using Serilog;
 using Serilog.Core;
 using Serilog.Events;
+using Serilog.Sinks.OpenTelemetry;
 
 namespace ArchLens.Auth.Api.Configurations;
 
@@ -18,7 +19,17 @@ public static class SerilogExtensions
                 .Enrich.FromLogContext()
                 .Enrich.WithProperty("ServiceName", serviceName)
                 .Enrich.WithProperty("Application", "archlens")
-                .Enrich.With<EmailMaskingEnricher>());
+                .Enrich.With<EmailMaskingEnricher>()
+                .WriteTo.OpenTelemetry(options =>
+                {
+                    options.Endpoint = context.Configuration["Otlp:Endpoint"]
+                        ?? "http://otel-collector:4317";
+                    options.Protocol = OtlpProtocol.Grpc;
+                    options.ResourceAttributes = new Dictionary<string, object>
+                    {
+                        ["service.name"] = serviceName
+                    };
+                }));
 
         return builder;
     }
